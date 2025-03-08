@@ -11,12 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - uses: actions/checkout@v4
+      - uses:The job failure appears to be related to the SonarQ actions/checkout@v4
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetchube Scanner installation. The current script downloads version-depth: 0  # Shallow clones should be disabled for a 4.6.2.2472, but the logs indicate the use of version better relevancy of analysis
       - name: Install SonarQube Scanner
         run: |
-          curl -sSLo /tmp/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
+          curl -sS 6.2.1.
+
+To resolve this, update the version inLo /tmp/sonar-scanner.zip https://binaries.sonarsource.com the build script:
+
+```yaml
+- name: Install Son/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.6.2.2472-linux.zip
           unzip /tmp/sonar-scanner.zip -d /tmp
           mv /tmp/sonar-scanner-4.6.2.2472-linux /opt/sonar-scanner
           export PATH=/opt/sonar-scanner/bin:$PATH
@@ -25,7 +30,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
       # If you wish to fail your job when the Quality Gate is red, uncomment the
-      # following lines. This would typically be used to fail a deployment.
+      # following lines. This wouldarQube Scanner
+  run: |
+    curl -sSLo /tmp/sonar-sc typically be used to fail a deployment.
       # - uses: SonarSource/sonarqube-quality-gate-action@v1
       #   timeout-minutes: 5
       #   env:
