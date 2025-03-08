@@ -9,7 +9,6 @@ on:
   pull_request:
       types: [opened, synchronize, reopened]
 
-name: SonarQube Scan
 jobs:
   sonarqube:
     name: SonarQube Trigger
@@ -23,5 +22,5 @@ jobs:
     - name: SonarQube Scan
       uses: kitabisa/sonarqube-action@v1.2.0
       with:
-        host: ${{ secrets.SONARQUBE_HOST }}
-        login: ${{ secrets.SONARQUBE_TOKEN }}
+        host: ${{ secrets.SONAR_TOKEN }}
+        login: ${{ secrets.SONAR_HOST_URL }}
