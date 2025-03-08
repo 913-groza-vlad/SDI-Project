@@ -10,17 +10,16 @@ on:
       types: [opened, synchronize, reopened]
 
 jobs:
-  sonarqube:
-    name: SonarQube Trigger
+  sonar:
     runs-on: ubuntu-latest
     steps:
-    - name: Checking out
-      uses: actions/checkout@main
-      with:
-        # Disabling shallow clone is recommended for improving relevancy of reporting
-        fetch-depth: 0
-    - name: SonarQube Scan
-      uses: kitabisa/sonarqube-action@v1.2.0
-      with:
-        host: ${{ secrets.SONAR_TOKEN }}
-        login: ${{ secrets.SONAR_HOST_URL }}
+      - uses: actions/checkout@v2
+      - name: SonarScanner
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        run: |
+          sonar-scanner \
+          -Dsonar.projectKey=Software-Quality \
+          -Dsonar.sources=. \
+          -Dsonar.host.url=http://localhost:9000/
